@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion cfg.compileSdkVersion
+    defaultConfig {
+        applicationId cfg.applicationId
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
+        multiDexEnabled true//防止方法数超过65535
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g" //此处可根据电脑本身配置 数值越大 当然越快
+        preDexLibraries = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:${cfg.androidSupportVersion}"
+    implementation "com.android.support:design:${cfg.androidSupportVersion}"
+    implementation "com.android.support:recyclerview-v7:${cfg.androidSupportVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "com.jakewharton:butterknife:${cfg.butterknife}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${cfg.butterknife}"
+    /*retrofit*/
+    implementation "com.squareup.retrofit2:retrofit:${cfg.retrofit2}"
+    implementation "com.squareup.retrofit2:converter-gson:${cfg.retrofit2}"
+    implementation "com.squareup.retrofit2:converter-scalars:${cfg.retrofit2}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${cfg.retrofit2}"
+    implementation "io.reactivex.rxjava2:rxjava:${cfg.rxjava}"
+    implementation "io.reactivex.rxjava2:rxandroid:${cfg.rxandroid}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${cfg.interceptorOKhttp}"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${cfg.rxjava2Adapter}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle:${cfg.rxlifecycle2}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:${cfg.rxlifecycle2}"
+    implementation 'com.android.support:multidex:1.0.1'//防止方法数超过65535
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.kesar:lazydb:1.1.1'
+    implementation(["com.trello.rxlifecycle2:rxlifecycle-kotlin:${cfg.rxlifecycle_version}"])
+    /*https://blog.csdn.net/UStory/article/details/83545529*/
+    implementation 'cn.ustory.qy:kadapter:1.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.1.1'
+    implementation "com.android.support:cardview-v7:${cfg.androidSupportVersion}"
+}

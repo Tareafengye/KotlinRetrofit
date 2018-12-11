@@ -1,0 +1,22 @@
+ext{
+    cfg=[
+            compileSdkVersion:27,
+            buildToolsVersion:"27.0.0",
+            minSdkVersion:16,
+            targetSdkVersion:27,
+            versionCode:1,
+            versionName:"1.0.0",
+            applicationId:"com.tiantian.kotlindemo",
+            //v7包
+            androidSupportVersion:"27.0.0",
+            butterknife:"8.8.1",
+            retrofit2:"2.3.0",
+            rxjava:"2.1.0",
+            rxandroid:"2.0.1",
+            interceptorOKhttp:"3.8.1",
+            rxjava2Adapter:"1.0.0",
+            rxlifecycle2:"2.1.0",
+            rxlifecycle_version:"2.2.0"
+
+    ]
+}
